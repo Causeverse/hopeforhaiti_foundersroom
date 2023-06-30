@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Shopping Cart</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"
+      integrity="sha512-24XP4a9KVoIinPFUbcnjIjAjtS59PUoxQj3GNVpWc86bCqPuy3YxAcxJrxFCxXe4GHtAumCbO2Ze2bddtuxaRw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.cdnfonts.com/css/open-sans" rel="stylesheet" />
+    <script
+      src="https://code.jquery.com/jquery-3.7.0.min.js"
+      integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../css/shifty4_popup.css" />
+
+    <script>
+      function toastM() {
+        var x = document.getElementById("toast");
+        x.className = "show";
+        setTimeout(function () {
+          x.className = x.className.replace("show", "");
+        }, 3000);
+      }
+
+      function navigateToShift4Charge() {
+        // Redirect to shifty4_popup.html
+        var total = document.getElementById("totalValue").innerText;
+
+        var url = "shifty4_popup.html?total=" + total;
+        window.location.href = url;
+      }
+
+      function closePopup() {
+        window.parent.document.querySelector("#shopping_cart").remove();
+      }
+      delete window.parent.isEth;
+    </script>
+  </head>
+  <body>
+    <button id="btnClose" onclick="closePopup()"><i class="feather-20" data-feather="x"></i></button>
+    <div class="container" style="padding-top: 2rem">
+      <div class="title">Shopping Cart</div>
+      <div style="padding: 2rem 1rem 0 1rem">
+        <table id="tblCards">
+          <thead>
+            <tr>
+              <th width="5%" class="light">Item</th>
+              <th width="70%" class="light"></th>
+              <th style="text-align: right" class="light">Amount</th>
+            </tr>
+          </thead>
+          <tbody style="font-weight: 400">
+            <tr>
+              <td><img src="../images/Image_1.jpg" style="width: 50px; height: 50px" /></td>
+              <td>10</td>
+              <td>
+                <label class="switch">
+                  <input type="checkbox" />
+                  <span class="slider"></span>
+                </label>
+              </td>
+            </tr>
+            <tr>
+              <td><img src="../images/Image_2.jpg" style="width: 50px; height: 50px" /></td>
+              <td>20</td>
+              <td>
+                <label class="switch">
+                  <input type="checkbox" />
+                  <span class="slider"></span>
+                </label>
+              </td>
+            </tr>
+            <tr>
+              <td><img src="../images/Image_9.jpg" style="width: 50px; height: 50px" /></td>
+              <td>30</td>
+              <td>
+                <label class="switch">
+                  <input type="checkbox" />
+                  <span class="slider"></span>
+                </label>
+              </td>
+            </tr>
+            <tr class="row-visible">
+              <td style="padding: 0; height: 10px"></td>
+            </tr>
+            <tr class="row-visible" style="border-top: 1px solid lightgray">
+              <td style="padding: 0; height: 8px"></td>
+            </tr>
+            <tr class="row-visible">
+              <td class="light">SubTotal</td>
+              <td></td>
+              <td class="dollar dark" id="totalValue" style="font-weight: bolder; text-align: right">60</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="form-group d-flex flex-row" style="margin-top: 1rem; margin-bottom: 0">
+          <div class="flex-fill"></div>
+          <button type="button" onclick="navigateToShift4Charge()">
+            <i class="feather-18" data-feather="credit-card"> </i>
+            Donate Now
+          </button>
+        </div>
+      </div>
+    </div>
+    <script>
+      const PRECISION = 0;
+      const iframe = window.parent.document.querySelector("#shopping_cart");
+      console.log("shopping_cart.html : cards : ", window.parent.cardsSelected);
+      if (!window.parent.cardsSelected)
+        window.parent.cardsSelected =
+          window.self == window.top
+            ? {
+                M91: {
+                  cornerRadius: 0.02,
+                  description: "Can provide 1 health consultation and medical supplies",
+                  fileName: "/16 Donate.png",
+                  fullBright: true,
+                  modelType: "img",
+                  price: "16.00",
+                  shadow: true,
+                  singleSided: true,
+                  textureLocation: "./assets/images/16 Donate.png",
+                  textureType: "image",
+                  title: "Tier 2 Donation",
+                  type: "2d",
+                },
+                M93: {
+                  cornerRadius: 0.02,
+                  description: "Can pay 1 teacher to supplement their salary for 1 month",
+                  fileName: "/50 Donate.png",
+                  fullBright: true,
+                  modelType: "img",
+                  price: "50.00",
+                  shadow: true,
+                  singleSided: true,
+                  textureLocation: "./assets/images/50 Donate.png",
+                  textureType: "image",
+                  title: "Tier 4 Donation",
+                  type: "2d",
+                },
+                M95: {
+                  cornerRadius: 0.02,
+                  description: "Can pay 1 community health worker a 1 month salary stipend",
+                  fileName: "/100 Donate.png",
+                  fullBright: true,
+                  modelType: "img",
+                  price: "100.00",
+                  shadow: true,
+                  singleSided: true,
+                  textureLocation: "./assets/images/100 Donate.png",
+                  textureType: "image",
+                  title: "Tier 6 Donation",
+                  type: "2d",
+                },
+              }
+            : {};
+      var cardsSelected = window.parent.cardsSelected;
+
+      var xpos = 0;
+      $(document).ready(updateTable);
+
+      window.addEventListener("message", (evt) => {
+        if (evt.data.message == "select-card") {
+          if (!cardsSelected[evt.data.card.id]) {
+            cardsSelected[evt.data.card.id] = evt.data.card._cardData;
+          } else {
+            delete cardsSelected[evt.data.card.id];
+          }
+          updateTable();
+        } else if (evt.data.message == "moveWindow") {
+          moveWindow();
+        }
+      });
+
+      // const channel = new BroadcastChannel("example-channel");
+      // channel.addEventListener("message", (evt) => {
+      //   if(evt.data.message == "current-xpos"){
+      //     xpos = evt.data.xpos;
+      //   }
+      // });
+
+      function moveWindow() {
+        $(iframe).animate({ left: Math.min(window.parent.innerWidth - 400, Math.max(20, window.parent.xpos - 200)) + "px" }, 200);
+      }
+
+      function updateTable() {
+        console.log("updateTable Function is called : ", cardsSelected);
+        const cardCount = Object.keys(cardsSelected).length;
+        $(`#tblCards tbody tr:not(.row-visible)`).remove();
+
+        let total = 0;
+        let itemId = 0;
+        let str = Object.keys(cardsSelected).reduce((acc, cur1) => {
+          const cur = cardsSelected[cur1];
+          total += Number(cur.price);
+          itemId++;
+          let strItem = `<tr>
+            <td><img src="${cur.textureLocation.replace("./assets/", "../")}" style="width: 50px; height: 50px;"/></td>
+            <td>
+              <div class="d-flex flex-column align-items-start" style="width:fit-content">
+                <div>${cur.title}</div>
+                <div style="font-size:8px;text-align:left">${cur.description}</div>
+                <div class="d-flex flex-row align-items-end">
+                  <button class="btnMini" onclick="onItemSub(event)"><i class="feather-16" data-feather="minus-circle"></i></button>
+                  <div class="itemCount" data-iid="${cur1}" data-price="${cur.price}">${cur.count == null ? 1 : Number(cur.count)}</div>
+                  <button class="btnMini" onclick="onItemAdd(event)"><i class="feather-16" data-feather="plus-circle"></i></button>
+                </div>
+              </div>
+            </td>
+            <td class="dollar" style="text-align:right">${(Number(cur.price) * (cur.count == null ? 1 : Number(cur.count))).toFixed(PRECISION)}</td>
+          </tr>`;
+          return acc + strItem;
+        }, "");
+        $(`.row-visible:first`).before(str);
+        feather.replace();
+
+        setTimeout(() => {
+          updateItemNumbers();
+
+          if (iframe) {
+            const height = $(".container").height() + 60 + "px";
+            $(iframe).animate({ height }, 200);
+          }
+        }, 1);
+      }
+
+      function onItemAdd(e) {
+        const dom = $(e.currentTarget).parent().find(".itemCount");
+        const count = Number(dom.text());
+        dom.text(count + 1);
+        dom
+          .parentsUntil("tr")
+          .last()
+          .parent()
+          .find(".dollar:last-of-type")
+          .html(Number((count + 1) * Number(dom.data("price"))).toFixed(PRECISION));
+        updateItemNumbers();
+      }
+
+      function onItemSub(e) {
+        const dom = $(e.currentTarget).parent().find(".itemCount");
+        const count = Number(dom.text());
+        if (count <= 0) {
+          return;
+        }
+        dom.text(count - 1);
+        dom
+          .parentsUntil("tr")
+          .last()
+          .parent()
+          .find(".dollar:last-of-type")
+          .html(Number((count - 1) * Number(dom.data("price"))).toFixed(PRECISION));
+        updateItemNumbers();
+      }
+
+      function updateItemNumbers() {
+        let total = 0;
+        const itemCounts = $(".itemCount");
+        for (let i = 0; i < itemCounts.length; i++) {
+          const itemCountDom = $(itemCounts[i]);
+          const price = Number(itemCountDom.data("price"));
+          const count = Number(itemCountDom.text().trim());
+          cardsSelected[itemCountDom.data("iid")].count = count;
+          total += price * count;
+        }
+        $("#totalValue").html(total.toFixed(PRECISION));
+        window.parent.cardsSelected = cardsSelected;
+      }
+
+      /*
+      function onItemChange(e, price) {
+        let totalstr = $("#totalValue").text();
+        totalstr = totalstr.substring(1);
+        let total = Number(totalstr);
+        const dom = e.target || e.currentTarget;
+        total = total + (dom.checked ? 1 : -1) * Number(price);
+        $("#totalValue").html(CURRENCY + total.toFixed(PRECISION));
+      }
+      */
+      feather.replace();
+    </script>
+  </body>
+</html>

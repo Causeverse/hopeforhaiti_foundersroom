@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Thank you for Donating</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"
+      integrity="sha512-24XP4a9KVoIinPFUbcnjIjAjtS59PUoxQj3GNVpWc86bCqPuy3YxAcxJrxFCxXe4GHtAumCbO2Ze2bddtuxaRw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.cdnfonts.com/css/open-sans" rel="stylesheet" />
+    <script
+      src="https://code.jquery.com/jquery-3.7.0.min.js"
+      integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
+    <link rel="stylesheet" href="../css/shifty4_popup.css" />
+
+    <script>
+      function getParameterValue(parameterName) {
+        var urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(parameterName);
+      }
+
+      function closePopup() {
+        window.parent.document.querySelector("#shopping_cart").remove();
+      }
+    </script>
+  </head>
+  <body>
+    <button id="btnClose" onclick="closePopup()"><i class="feather-20" data-feather="x"></i></button>
+    <div class="container" style="padding-top: 2rem">
+      <div class="title">Hope for Haiti</div>
+      <div style="margin-top: 1rem">
+        <div
+          style="
+            background-image: url(../images/children.jpg);
+            width: 164px;
+            height: 111px;
+            border-radius: 20px;
+            margin: auto;
+            background-size: cover;
+            background-position: center;
+          "
+        ></div>
+      </div>
+      <div class="light" style="text-align: center; margin-top: 1.8rem; font-weight: 600; font-size: 26.56px; line-height: 36.17px">
+        Thank You <br />for Donating!
+      </div>
+      <div id="total" class="dollar" style="color: #4caf50; font-weight: 700; text-align: center; font-size: 42.5px">0</div>
+      <div class="d-flex flex-row align-items-end">
+        <div class="light flex-fill d-flex flex-column">
+          <div>Contact Us</div>
+          <div>(239) 434-7183</div>
+          <div>info@hopeforhaiti.com</div>
+        </div>
+        <div>
+          <button id="btn-email" onclick="onEmailReceipt()" disabled class="light-btn">Email Receipt</button>
+        </div>
+      </div>
+    </div>
+    <div id="modal-email" class="tmodal-blur d-none">
+      <div class="tmodal">
+        <form onsubmit="onSendReceipt(event)">
+          <div class="light" style="margin-bottom: 0.5rem">Email Address</div>
+          <div class="form-group">
+            <input type="email" required name="email" />
+          </div>
+          <div class="d-flex flex-row">
+            <div class="flex-fill"></div>
+            <button id="btn-send-email" type="submit" class="light-btn">Send Receipt</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="modal-result" class="tmodal-blur d-none">
+      <div class="tmodal" style="color: #4caf50; font-weight: 600; width: 230px; text-align: center">Receipt Sent to Email Address!</div>
+    </div>
+
+    <script>
+      const iframe = window.parent.document.querySelector("#shopping_cart");
+
+      if (!window.parent.cardsSelected)
+        window.parent.cardsSelected =
+          window.self == window.top
+            ? {
+                M91: {
+                  cornerRadius: 0.02,
+                  description: "Can provide 1 health consultation and medical supplies",
+                  fileName: "/16 Donate.png",
+                  fullBright: true,
+                  modelType: "img",
+                  count: 3,
+                  price: "16.00",
+                  shadow: true,
+                  singleSided: true,
+                  textureLocation: "./assets/images/16 Donate.png",
+                  textureType: "image",
+                  title: "Tier 2 Donation",
+                  type: "2d",
+                },
+                M93: {
+                  cornerRadius: 0.02,
+                  description: "Can pay 1 teacher to supplement their salary for 1 month",
+                  fileName: "/50 Donate.png",
+                  fullBright: true,
+                  modelType: "img",
+                  price: "50.00",
+                  count: 2,
+                  shadow: true,
+                  singleSided: true,
+                  textureLocation: "./assets/images/50 Donate.png",
+                  textureType: "image",
+                  title: "Tier 4 Donation",
+                  type: "2d",
+                },
+                M95: {
+                  cornerRadius: 0.02,
+                  description: "Can pay 1 community health worker a 1 month salary stipend",
+                  fileName: "/100 Donate.png",
+                  fullBright: true,
+                  modelType: "img",
+                  price: "100.00",
+                  count: 1,
+                  shadow: true,
+                  singleSided: true,
+                  textureLocation: "./assets/images/100 Donate.png",
+                  textureType: "image",
+                  title: "Tier 6 Donation",
+                  type: "2d",
+                },
+              }
+            : {};
+      var cardsSelected = window.parent.cardsSelected;
+
+      $("#total").html(getParameterValue("total") || 0);
+
+      function onEmailReceipt() {
+        $("#modal-email").removeClass("d-none");
+      }
+
+      function onSendReceipt(e) {
+        e.preventDefault();
+        $("#btn-send-email").attr("disabled", "true");
+
+        if (window.curDonatingId) {
+          createDonor({ donatingId: window.curDonatingId, email: e.target.email.value });
+        }
+
+        const cards = Object.values(cardsSelected).map((card) => {
+          const { title, description, price, count } = card;
+          return { title, description, price, count };
+        });
+
+        const BACKEND_URL = "https://api.8base.com/clirdmoaa000d08l28ill17m9";
+        axios
+          .post(BACKEND_URL + "/webhook/sendmail", {
+            email: e.target.email.value,
+            name: "Sarah",
+            cards,
+          })
+          .then(({ data }) => data)
+          .then((data) => {
+            $("#modal-email").addClass("d-none");
+            $("#modal-result").removeClass("d-none");
+            $("#btn-send-email").removeAttr("disabled");
+          });
+      }
+
+      $(".tmodal-blur").mousedown(function (e) {
+        if (e.currentTarget == e.target) {
+          $(e.currentTarget).addClass("d-none");
+        }
+      });
+
+      feather.replace();
+      if (iframe) {
+        setTimeout(() => {
+          const height = $(".container").height() + 60 + "px";
+          $(iframe).animate({ height }, 200);
+        }, 1);
+      }
+    </script>
+
+    <script>
+      const BACKEND_ENDPOINT = "https://api.8base.com/clirdmoaa000d08l28ill17m9";
+      const BACKEND_TOKEN = "6a3abeb3-bde5-45bf-85ce-c6cadcbb67b8";
+
+      function sendGraphQL(query) {
+        return axios
+          .post(
+            BACKEND_ENDPOINT,
+            { query },
+            {
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: BACKEND_TOKEN,
+              },
+            }
+          )
+          .then(({ data }) => data)
+          .then(({ data }) => data);
+      }
+
+      function createDonating(amount = 105, method = "Shift4", currency = "USD") {
+        const CREATE_DONATING = `mutation {
+          donatingCreate(data: {amount: ${amount}, method: "${method}"}) {
+            id
+          }
+        }`;
+
+        return sendGraphQL(CREATE_DONATING).then((r) => r.donatingCreate);
+      }
+
+      async function createUnit({ donatingId, tier = 1, amount = 5, count = 1, title = "Tier 1", description = "Can provide one dinner" }) {
+        const CREATE_UNIT = `mutation {
+            unitCreate(data: {
+              tier: ${tier}
+              amount: ${amount}
+              count: ${count}
+              title: "${title}"
+              description: "${description}"
+              donatingId: "${donatingId}"
+          }) {
+              id
+            }
+          }`;
+        //console.log(CREATE_UNIT);
+
+        return await sendGraphQL(CREATE_UNIT).then((r) => r.unitCreate);
+      }
+
+      async function createUnits(units = []) {
+        let strQuery = units.reduce((acc, cur) => {
+          const strAdd = `{
+            tier: ${cur.tier}
+            amount: ${cur.amount}
+            count: ${cur.count}
+            title: "${cur.title}"
+            description: "${cur.description}"
+            donating: {
+              connect: {
+                id: "${cur.donatingId}"
+              }
+            }
+            donatingId: "${cur.donatingId}"
+          }`;
+
+          return acc + strAdd;
+        }, "");
+
+        const CREATE_UNITS = `mutation {
+          unitCreateMany(
+            data: [
+             ${strQuery}
+            ]
+          ) {
+            items {
+              id
+            }
+          }
+        }`;
+        //console.log(CREATE_UNITS);
+
+        return await sendGraphQL(CREATE_UNITS).then((r) => r.unitCreateMany.items);
+      }
+
+      async function createDonor({ donatingId, email = "aaa@bbb.com", name = "Unknown" }) {
+        console.log(donatingId);
+        const CREATE_DONOR = `mutation {
+          donorCreate(
+            data: {
+              email: "${email}"
+              name: "${name}"
+              donating: {
+                connect: {
+                  id: "${donatingId}"
+                }
+              }
+            }
+          ) {
+            id
+          }
+        }`;
+        console.log(CREATE_DONOR);
+
+        return await sendGraphQL(CREATE_DONOR).then((r) => r.donorCreate);
+      }
+
+      async function registerDonating() {
+        let strPaymentMethod = "unknown";
+        switch (window.parent.paymentMethod) {
+          case 0:
+            strPaymentMethod = "Shift4";
+            break;
+          case 2:
+            strPaymentMethod = "Paypal";
+            break;
+          case 3:
+            strPaymentMethod = "Venmo";
+            break;
+          case 4:
+            strPaymentMethod = "Crypto";
+            break;
+        }
+        const { id: newDonatingID } = await createDonating(getParameterValue("total") || 0, strPaymentMethod);
+        await createUnits(
+          Object.values(cardsSelected)
+            .filter((card) => card.count)
+            .map((card) => ({
+              tier: card.title.replace(/\D/g, ""),
+              amount: Number(card.price),
+              count: card.count || 0,
+              title: card.title,
+              description: card.description,
+              donatingId: newDonatingID,
+            }))
+        );
+        window.curDonatingId = newDonatingID;
+        $("#btn-email").removeAttr("disabled");
+      }
+      registerDonating();
+    </script>
+  </body>
+</html>

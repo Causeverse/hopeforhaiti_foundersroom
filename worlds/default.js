@@ -21,7 +21,7 @@ export function init(Constants) {
 
     Constants.UserBehaviorDirectory = "behaviors/default";
     Constants.UserBehaviorModules = [
-        "csmLights.js", "translucent.js", "video.js",
+        "csmLights.js", "translucent.js", "shoppingCart.js", "video.js",
     ];
 
     Constants.DefaultCards = [
