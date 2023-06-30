@@ -21,7 +21,7 @@ export function init(Constants) {
 
     Constants.UserBehaviorDirectory = "behaviors/default";
     Constants.UserBehaviorModules = [
-        "csmLights.js", "shoppingCart.js", "translucent.js"
+        "csmLights.js", "translucent.js", "shoppingCart.js", "video.js",
     ];
     
     Constants.ExcludedSystemBehaviorModules = ["gizmo.js", "dragAndDrop.js", "propertySheet.js", "stickyNote.js"];
@@ -325,6 +325,119 @@ export function init(Constants) {
                     title: "Tier 11 Donation",
                     description: "Can grant 1 student a 1 year college scholarship",
             
+            }
+        },
+
+        {
+            card: {
+                translation: [6.909744762343963, -0.1351254828040237, -11.273625317421818],
+                scale: [3.3237461964437656, 3.3237461964437656, 3.3237461964437656],
+                rotation: [0, -0.4279330361560266, 0, 0.903810442828741],
+                layers: ["pointer"],
+                behaviorModules: ["VideoPlayer",],
+                name: "Croquet Video 1",
+                color: 8947848,
+                depth: 0.025,
+                frameColor: 16777215,
+                fullBright: true,
+                pauseTime: 1.639603,
+                playStartTime: 98.082717,
+                shadow: true,
+                singleSided: true,
+                textureLocation: "./assets/videos/Creating Access to Education in Haiti.mp4",
+                textureType: "video",
+                type: "2d",
+            }
+        },
+
+        {
+            card: {
+                translation: [38.89036221559769, -0.4435312844080745, 11.608654564613342],
+                scale: [3.3418139380632463, 3.3418139380632463, 3.3418139380632463],
+                rotation: [0, -0.9995217108678909, 0, 0.030924901030154286],
+                layers: ["pointer"],
+                behaviorModules: ["VideoPlayer",],
+                name: "Empowering girls through education in Haiti.mp4",
+                color: 8947848,
+                depth: 0.025,
+                frameColor: 16777215,
+                fullBright: true,
+                pauseTime: 1.639603,
+                playStartTime: 98.082717,
+                shadow: true,
+                singleSided: true,
+                textureLocation: "./assets/videos/Empowering girls through education in Haiti.mp4",
+                textureType: "video",
+                type: "2d",
+            }
+        },
+
+        {
+            card: {
+                translation: [48.094239995250234, -0.4435312844080745, -20.7997582672425],
+                scale: [3.3418139380632463, 3.3418139380632463, 3.3418139380632463],
+                rotation: [0, -0.6988479060598851, 0, 0.7152703014914812],
+                layers: ["pointer"],
+                behaviorModules: ["VideoPlayer"],
+                name: "Hope for Haiti_ An Overview.mp4",
+                color: 8947848,
+                depth: 0.025,
+                frameColor: 16777215,
+                fullBright: true,
+                pauseTime: 0.03,
+                playStartTime: 98.082717,
+                shadow: true,
+                singleSided: true,
+                textureLocation: "./assets/videos/Hope for Haiti_ An Overview.mp4",
+                textureType: "video",
+                type: "2d",
+            
+            }
+        },
+
+        {
+            card: {
+                translation: [10.369387811794471, -0.16569460509036993, -10.515695260643952],
+                scale: [3.3418139380632463, 3.3418139380632463, 3.3418139380632463],
+                rotation: [0, -0.2085580528741605, 0, -0.9780099889987522],
+                layers: ["pointer"],
+                behaviorModules: ["VideoPlayer"],
+                name: "Rethink Haiti (1).mp4",
+                color: 8947848,
+                depth: 0.025,
+                frameColor: 16777215,
+                fullBright: true,
+                pauseTime: 0.03,
+                playStartTime: 98.082717,
+                shadow: true,
+                singleSided: true,
+                textureLocation: "./assets/videos/Rethink Haiti (1).mp4",
+                textureType: "video",
+                type: "2d",
+                      
+            }
+        },
+
+        {
+            card: {
+                translation: [58.9863720830082, -0.0672817498189272, 5.328539464895111],
+                scale: [3.3418139380632463, 3.3418139380632463, 3.3418139380632463],
+                rotation: [0, -0.9995217108],
+                layers: ["pointer"],
+                behaviorModules: ["VideoPlayer"],
+                name: "School Inauguration in Morency, Haiti!.mp4",
+                color: 8947848,
+                depth: 0.025,
+                frameColor: 16777215,
+                fullBright: true,
+                pauseTime: 0.03,
+                playStartTime: 98.082717,
+                shadow: true,
+                singleSided: true,
+                textureLocation: "./assets/videos/School Inauguration in Morency, Haiti!.mp4",
+                textureType: "video",
+                type: "2d",
+                       
             }
         },
 
