@@ -419,7 +419,7 @@ export function init(Constants) {
             card: {
                 translation: [58.9863720830082, -0.0672817498189272, 5.328539464895111],
                 scale: [3.3418139380632463, 3.3418139380632463, 3.3418139380632463],
-                rotation: [0, -0.9995217108],
+                rotation: [0, -1, 0, 0],
                 layers: ["pointer"],
                 behaviorModules: ["VideoPlayer"],
                 name: "School Inauguration in Morency, Haiti!.mp4",
