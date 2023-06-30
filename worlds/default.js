@@ -23,7 +23,10 @@ export function init(Constants) {
     Constants.UserBehaviorModules = [
         "csmLights.js", "shoppingCart.js", "translucent.js"
     ];
-
+    
+    Constants.ExcludedSystemBehaviorModules = ["gizmo.js", "dragAndDrop.js", "propertySheet.js", "stickyNote.js"];
+    Constants.ShowCaseSpec = {};
+    
     Constants.DefaultCards = [
         {
             card: {
