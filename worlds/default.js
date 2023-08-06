@@ -21,13 +21,19 @@ export function init(Constants) {
 
     Constants.UserBehaviorDirectory = "behaviors/default";
     Constants.UserBehaviorModules = [
-        "csmLights.js", "translucent.js", "shoppingCart.js", "video.js",
+        "csmLights.js", "translucent.js", "shoppingCart.js", "video.js", "engageChat.js",
     ];
     
     Constants.ExcludedSystemBehaviorModules = ["gizmo.js", "dragAndDrop.js", "propertySheet.js", "stickyNote.js"];
     Constants.ShowCaseSpec = {};
     
     Constants.DefaultCards = [
+        // {
+        //     card: {
+        //         behaviorModules: ["EngageChat"],
+        //         type: "object"
+        //     }
+        // },
         {
             card: {
                 layers: ["walk", "pointer"],
@@ -61,6 +67,23 @@ export function init(Constants) {
                 dataLocation: "./assets/sky/HDRi_4pm_1.exr",
                 fileName: "/HDRi_4pm_1.exr",
                 dataType: "exr",
+            }
+        },
+
+        {
+            card: {
+                translation: [61.531688949683414, -0.7, -5.537432209037485],
+                scale: [1, 1, 1],
+                rotation: [0, -0.8083058226906905, 0, -0.6183067444665314],
+                layers: ["pointer"],
+                fullBright: true,
+                modelType: "img",
+                shadow: true,
+                singleSided: true,
+                textureLocation: "./assets/images/radio.png",
+                textureType: "image",
+                type: "2d",
+                behaviorModules: ["EngageChat", "TranslucentImage"],
             }
         },
 
